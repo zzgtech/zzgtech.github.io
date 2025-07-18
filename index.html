@@ -3,327 +3,726 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>重庆知芝阁科技 - 专业科研辅导服务</title>
+    <title>知芝阁科技 - 专业科研辅导服务</title>
     <style>
-        /* 邮件兼容样式 */
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, "Microsoft YaHei", sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
+            box-sizing: border-box;
         }
-        
-        .email-container {
-            max-width: 600px;
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* 粒子背景容器 */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            background-color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
-        
-        .header {
-            background-color: #1e3a8a !important;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        
+
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #ffffff !important;
-            display: block;
-        }
-        
-        .company-name {
-            font-size: 20px;
-            margin-bottom: 8px;
-            color: #ffffff !important;
-            display: block;
-            font-weight: bold;
-        }
-        
-        .tagline {
-            font-size: 16px;
-            color: #ffffff !important;
-            display: block;
-        }
-        
-        .main-content {
-            padding: 30px 25px;
-        }
-        
-        .greeting {
             font-size: 24px;
             font-weight: bold;
-            color: #1e3a8a;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #64ffda;
+        }
+
+        /* 英雄区域 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
             margin-bottom: 20px;
+            background: linear-gradient(45deg, #64ffda, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .content-box {
-            background-color: #f8fafc;
-            border-left: 4px solid #3b82f6;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
-        
-        .content-text {
-            font-size: 16px;
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
             line-height: 1.6;
-            margin-bottom: 15px;
-            color: #4a5568;
         }
-        
-        .highlight {
-            color: #3b82f6;
-            font-weight: bold;
-        }
-        
-        .features-table {
-            width: 100%;
-            margin: 25px 0;
-            border-collapse: collapse;
-        }
-        
-        .feature-cell {
-            width: 33.33%;
-            padding: 20px 15px;
-            text-align: center;
-            vertical-align: top;
-            border: 1px solid #e2e8f0;
-            background-color: #f8fafc;
-        }
-        
-        .feature-icon {
-            font-size: 32px;
-            color: #8b5cf6;
-            margin-bottom: 10px;
-        }
-        
-        .feature-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #1e3a8a;
-            margin-bottom: 8px;
-        }
-        
-        .feature-desc {
-            font-size: 14px;
-            color: #64748b;
-            line-height: 1.5;
-        }
-        
-        .testimonial {
-            background-color: #f0f9ff;
-            border-left: 4px solid #0ea5e9;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            color: #0369a1;
-            margin-bottom: 10px;
-        }
-        
-        .testimonial-author {
-            text-align: right;
-            color: #0284c7;
-            font-weight: bold;
-        }
-        
-        .cta-section {
-            text-align: center;
-            margin: 30px 0;
-        }
-        
+
         .cta-button {
             display: inline-block;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             text-decoration: none;
-            padding: 15px 35px;
-            border-radius: 25px;
-            font-size: 18px;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: bold;
-            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        
-        .footer {
-            background-color: #1e293b;
-            color: white;
-            padding: 25px 20px;
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        /* 浮动图标 */
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: -2s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -4s;
+        }
+
+        .floating-icon:nth-child(4) {
+            top: 40%;
+            right: 30%;
+            animation-delay: -1s;
+        }
+
+        /* 特色服务区域 */
+        .features {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #64ffda, #667eea);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #64ffda;
+        }
+
+        .feature-desc {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* 统计数据区域 */
+        .stats {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
             text-align: center;
         }
-        
-        .contact-info {
-            margin-bottom: 20px;
+
+        .stat-item {
+            padding: 30px;
         }
-        
-        .contact-info p {
-            margin: 5px 0;
-            font-size: 14px;
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #64ffda;
+            margin-bottom: 10px;
+            display: block;
         }
-        
-        .social-links {
-            margin: 20px 0;
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
-        
-        .social-link {
+
+        /* 见证区域 */
+        .testimonials {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 0 auto;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            text-align: right;
+            font-weight: bold;
+            color: #64ffda;
+        }
+
+        /* 联系我们区域 */
+        .contact {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
             display: inline-block;
-            color: #93c5fd;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
             text-decoration: none;
-            margin: 0 10px;
-            padding: 8px 15px;
-            background-color: rgba(59, 130, 246, 0.2);
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
-        .unsubscribe {
-            font-size: 12px;
-            color: #94a3b8;
-            margin-top: 20px;
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
-        
-        /* 移动端优化 */
-        @media only screen and (max-width: 600px) {
-            .email-container {
-                width: 100% !important;
+
+        /* 页脚 */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
             
-            .header, .main-content, .footer {
-                padding: 20px 15px !important;
+            .hero h2 {
+                font-size: 1.5rem;
             }
             
-            .greeting {
-                font-size: 20px !important;
+            .nav-links {
+                display: none;
             }
             
-            .content-text {
-                font-size: 15px !important;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
             
-            .features-table {
-                width: 100% !important;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .feature-cell {
-                display: block !important;
-                width: 100% !important;
-                border: 1px solid #e2e8f0 !important;
-                margin-bottom: 10px !important;
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
             }
-            
-            .cta-button {
-                padding: 12px 25px !important;
-                font-size: 16px !important;
+        }
+
+        /* 滚动效果 */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        /* 粒子效果样式 */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            animation: particleFloat 8s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="email-container">
-        <!-- 邮件头部 -->
-        <div class="header" style="background-color: #1e3a8a !important; text-align: center; padding: 30px 20px;">
-            <div class="logo" style="color: #ffffff !important; font-size: 28px; font-weight: bold; margin-bottom: 10px; display: block;">知芝阁科技</div>
-            <div class="company-name" style="color: #ffffff !important; font-size: 20px; margin-bottom: 8px; display: block; font-weight: bold;">重庆知芝阁科技有限公司</div>
-            <div class="tagline" style="color: #ffffff !important; font-size: 16px; display: block;">专业科研辅导 · 助力学术成功</div>
+    <!-- 粒子背景 -->
+    <div id="particles-js"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">知芝阁科技</a>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#features">服务</a></li>
+                <li><a href="#stats">实力</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero">
+        <div class="floating-icons">
+            <div class="floating-icon">🎓</div>
+            <div class="floating-icon">📊</div>
+            <div class="floating-icon">🔬</div>
+            <div class="floating-icon">💎</div>
         </div>
         
-        <!-- 邮件内容 -->
-        <div class="main-content">
-            <h2 class="greeting">嘿，亲爱的同学，论文季不再抓狂！</h2>
-            
-            <div class="content-box">
-                <p class="content-text">
-                    你好呀！最近论文季是不是让你有点抓狂？选题卡壳、文献看不懂、数据分析一脸懵？别慌！科研辅导天团就是来帮你"救火"的！
-                </p>
-                
-                <p class="content-text">
-                    想让论文更出彩，助力保研、留学or职场加分？来，听我给你唠唠我们咋帮你搞定！
-                </p>
-                
-                <p class="content-text">
-                    我们专注<span class="highlight">正规科研辅导</span>，绝对不碰代写那条红线（代写可是学术大忌，咱得做诚信学霸！）。从选题、搭框架到梳理文献、搞定数据，我们一对一陪你把论文打磨得又专业又有你自己的味儿！
-                </p>
-                
-                <p class="content-text">
-                    想试试？我们先签合同，确认没问题再付款，透明又靠谱！不管你是冲着CCF-A类到C类论文，还是瞄准SCI一区到四区、EI源刊/EI会议/CPCI会议/SSCI/中文核心/普刊，我们都能帮你把论文质量拉满，助力保研推免加分，或者给留学申请、求职简历加点硬核亮点！
-                </p>
+        <div class="hero-content">
+            <h1>知芝阁科技</h1>
+            <h2>专业科研辅导 · 助力学术成功</h2>
+            <p>论文季不再抓狂！我们提供正规科研辅导，从选题到发表，一对一陪你把论文打磨得又专业又有你自己的味儿！</p>
+            <a href="#contact" class="cta-button">立即预约咨询</a>
+        </div>
+    </section>
+
+    <!-- 特色服务 -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">核心优势</h2>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <span class="feature-icon">🎓</span>
+                    <h3 class="feature-title">顶尖导师团队</h3>
+                    <p class="feature-desc">清北华五、港三新二、北美顶尖高校的在读PhD或博士，Google Scholar 2w+引用大佬与你面对面交流</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">全面论文支持</h3>
+                    <p class="feature-desc">从CCF-A类到普刊，SCI一区到四区，EI源刊/会议/CPCI/SSCI/中文核心，全方位提升论文质量</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <span class="feature-icon">🛡️</span>
+                    <h3 class="feature-title">透明可靠服务</h3>
+                    <p class="feature-desc">先签合同再付款，安全有保障。专注正规科研辅导，绝不涉及代写违规行为</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <span class="feature-icon">🌟</span>
+                    <h3 class="feature-title">个性化定制</h3>
+                    <p class="feature-desc">从文科到理工科，从商科到艺术，全专业方向覆盖，量身定制专属辅导方案</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <span class="feature-icon">🚀</span>
+                    <h3 class="feature-title">助力升学就业</h3>
+                    <p class="feature-desc">保研推免加分，留学申请背景提升，求职简历硬核亮点，多重价值一站式解决</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <span class="feature-icon">💼</span>
+                    <h3 class="feature-title">专业资质保障</h3>
+                    <p class="feature-desc">天眼查可查实缴资本1150万，多家注册教育咨询公司，实力强劲值得信赖</p>
+                </div>
             </div>
-            
-            <!-- 优势展示 -->
-            <table class="features-table">
-                <tr>
-                    <td class="feature-cell">
-                        <div class="feature-icon">🎓</div>
-                        <h3 class="feature-title">顶尖导师团队</h3>
-                        <p class="feature-desc">清北华五、港三新二、<br>北美顶尖高校的在读PhD或博士</p>
-                    </td>
-                    <td class="feature-cell">
-                        <div class="feature-icon">📊</div>
-                        <h3 class="feature-title">论文质量保障</h3>
-                        <p class="feature-desc">从CCF-A到普刊，<br>全面提升论文质量</p>
-                    </td>
-                    <td class="feature-cell">
-                        <div class="feature-icon">🛡️</div>
-                        <h3 class="feature-title">透明可靠服务</h3>
-                        <p class="feature-desc">先签合同再付款，<br>安全有保障</p>
-                    </td>
-                </tr>
-            </table>
-            
-            <div class="testimonial">
+        </div>
+    </section>
+
+    <!-- 统计数据 -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">实力展示</h2>
+            <div class="stats-grid">
+                <div class="stat-item scroll-reveal">
+                    <span class="stat-number">1150万</span>
+                    <p class="stat-label">实缴注册资本</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <span class="stat-number">2万+</span>
+                    <p class="stat-label">导师引用量</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <span class="stat-number">100%</span>
+                    <p class="stat-label">正规辅导</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <span class="stat-number">全覆盖</span>
+                    <p class="stat-label">专业方向</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用户见证 -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">学员见证</h2>
+            <div class="testimonial-card scroll-reveal">
                 <p class="testimonial-text">
-                    "知芝阁科技的科研辅导服务帮助我在一个月内完成了高质量的论文，成功获得了保研资格。导师非常专业，指导很有针对性！"
+                    "知芝阁科技的科研辅导服务帮助我在一个月内完成了高质量的论文，成功获得了保研资格。导师非常专业，指导很有针对性，让我在学术路上更有底气！"
                 </p>
                 <p class="testimonial-author">—— 某985高校大四学生</p>
             </div>
-            
-            <div class="content-box">
-                <p class="content-text">
-                    <span class="highlight">天眼查上可查实缴资本1150万</span>（多家注册教育咨询公司），实力杠杠的！我们的导师团队更是"神仙阵容"：全是清北华五、港三新二、北美顶尖高校的在读PhD或已毕业的博士，还有大厂算法研究员、国内外高校的教授、副教授、助理教授，Google Scholar 2w+引用大佬与你面对面交流！
-                </p>
-                
-                <p class="content-text">
-                    从文科到理工科，从商科到艺术，全专业方向我们都能cover，给你量身定制辅导方案。
-                </p>
-                
-                <p class="content-text">
-                    我们直接招募的顶尖导师经过了多轮严格筛选，确保每个老师都能给你超专业的指导。无论是本科毕业论文、硕博论文，是更高阶的科研项目产出等，从科研idea到实验再到论文的产出，我们都能协助进行高质量把关，保研、留学、就业路上多一份底气！
-                </p>
-            </div>
-            
-            <!-- 行动号召 -->
-            <div class="cta-section">
-                <a href="https://work.weixin.qq.com/ca/cawcde9f1f5839d5b7" class="cta-button">立即预约咨询</a>
-                <p style="margin-top: 15px; color: #64748b;">
-                    请添加企业微信进行详细咨询，定制您的专属方案！
-                </p>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">联系我们</h2>
+            <p class="scroll-reveal">想试试？我们先签合同，确认没问题再付款，透明又靠谱！</p>
+            <div class="contact-links">
+                <a href="https://work.weixin.qq.com/ca/cawcde9f1f5839d5b7" class="contact-link">企业微信咨询</a>
+                <a href="https://doc.weixin.qq.com/pdf/d3_AaIA6QabAPYCND5vW3xdxQlSoOau1" class="contact-link">案例介绍</a>
+                <a href="http://xhslink.com/a/KqqDdxpEgvhgb" class="contact-link">小红书</a>
+                <a href="https://zhuanlan.zhihu.com/p/1923896166359233270" class="contact-link">知乎专栏</a>
             </div>
         </div>
-        
-        <!-- 邮件页脚 -->
-        <div class="footer">
-            <div class="contact-info">
-                <p><strong>重庆知芝阁科技有限公司</strong></p>
-                <p>地址：重庆市经开区江峡路 1 号 16 幢</p>
-                <p>邮箱：zhizhigew@gmail.com</p>
-            </div>
-            
-            <div class="social-links">
-                <a href="https://doc.weixin.qq.com/pdf/d3_AaIA6QabAPYCND5vW3xdxQlSoOau1" class="social-link">📄 案例介绍</a>
-                <a href="http://xhslink.com/a/KqqDdxpEgvhgb" class="social-link">📱 小红书</a>
-                <a href="https://zhuanlan.zhihu.com/p/1923896166359233270" class="social-link">📝 知乎专栏</a>
-            </div>
-            
-            <p class="unsubscribe">
-                海量成功案例等你来一探究竟，祝你前程似锦，一路长虹！<br>
-                © 2025 重庆知芝阁科技有限公司 版权所有
-            </p>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p><strong>重庆知芝阁科技有限公司</strong></p>
+            <p>地址：重庆市经开区江峡路 1 号 16 幢</p>
+            <p>邮箱：zhizhigew@gmail.com</p>
+            <p>© 2025 重庆知芝阁科技有限公司 版权所有</p>
         </div>
-    </div>
+    </footer>
+
+    <script>
+        // 滚动显示动画
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('revealed');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // 初始检查
+
+        // 创建粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-js');
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // 随机大小
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // 随机位置
+                particle.style.left = Math.random() * 100 + '%';
+                
+                // 随机透明度
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                // 随机动画延迟
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                
+                particlesContainer.appendChild(particle);
+                
+                // 动画结束后移除粒子
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 8000);
+            }
+            
+            // 持续创建粒子
+            setInterval(createParticle, 200);
+        }
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 数字动画
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.stat-number');
+            
+            numbers.forEach(number => {
+                const target = number.textContent;
+                if (target.includes('万')) {
+                    const value = parseInt(target);
+                    animateNumber(number, 0, value, target.replace(value, ''));
+                }
+            });
+        }
+
+        function animateNumber(element, start, end, suffix) {
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(start + (end - start) * progress);
+                element.textContent = current + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // 页面加载完成后启动效果
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // 延迟启动数字动画
+            setTimeout(animateNumbers, 1000);
+        });
+
+        // 鼠标跟随效果
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.cursor');
+            if (!cursor) {
+                const newCursor = document.createElement('div');
+                newCursor.className = 'cursor';
+                newCursor.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: radial-gradient(circle, rgba(100,255,218,0.3) 0%, transparent 70%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    transform: translate(-50%, -50%);
+                `;
+                document.body.appendChild(newCursor);
+            }
+            
+            document.querySelector('.cursor').style.left = e.clientX + 'px';
+            document.querySelector('.cursor').style.top = e.clientY + 'px';
+        });
+    </script>
 </body>
 </html>
